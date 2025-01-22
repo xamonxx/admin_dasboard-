@@ -1,4 +1,10 @@
 <?php
+include 'config/db.php'; // Koneksi ke database
+
+// Query untuk mengambil semua data user
+$query = "SELECT * FROM user";
+$result = mysqli_query($conn, $query);
+
 session_start();
 
 // Cek apakah user sudah login
@@ -64,7 +70,7 @@ xamonxx@gmail.com
 </div>
 <ul class="py-1" role="none">
 <li>
-<a href="#"
+<a href="index.php"
 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
 role="menuitem">Dashboard</a>
 </li>
@@ -79,7 +85,7 @@ class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-30
 role="menuitem">Earnings</a>
 </li>
 <li>
-<a href="#"
+<a href="logout.php"
 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
 role="menuitem">Sign out</a>
 </li>
@@ -128,7 +134,7 @@ d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A
 </a>
 </li>
 <li>
-<a href="data_user.php"
+<a href="data_users.php"
 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 <i class="fi fi-br-member-list mt-1 mr-1 text-slate-400"></i>
 <span class="flex-1 ms-3 whitespace-nowrap">Data Users</span>
@@ -235,7 +241,7 @@ account</a>
 </li>
 </ul>
 <div class="py-1">
-<a href="#"
+<a href="proses_delete_users.php"
 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-red-500">Delete
 User</a>
 </div>
@@ -257,6 +263,15 @@ placeholder="Search for users">
 <div class="relative overflow-x-auto sm:rounded-lg">
 <div
 class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-5 bg-salet-600 dark:bg-salet-600">
+<!--nofit,-->
+<?php
+// if (isset($_GET['status'])) {
+// if ($_GET['status'] == 'sukses') {
+// echo "<p style='color: green;'>" . htmlspecialchars($_GET['pesan']) . "</p>";
+// } elseif ($_GET['status'] == 'gagal') {
+// echo "<p style='color: red;'>" . htmlspecialchars($_GET['pesan']) . "</p>";
+//}
+?>
 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 <tr>
@@ -267,226 +282,58 @@ class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue
 <label for="checkbox-all-search" class="sr-only">checkbox</label>
 </div>
 </th>
-<th scope="col" class="px-6 py-3">
-Name
-</th>
-<th scope="col" class="px-6 py-3">
-Role
-</th>
-<th scope="col" class="px-6 py-3">
-Status
-</th>
-<th scope="col" class="px-6 text-center py-3">
-Action
-</th>
+<th scope="col" class="px-6 py-3">Name</th>
+<th scope="col" class="px-6 py-3">Role</th>
+<th scope="col" class="px-6 py-3">Status</th>
+<th scope="col" class="px-6 text-center py-3">Action</th>
 </tr>
 </thead>
 <tbody>
-<tr
-class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+<?php if (mysqli_num_rows($result) > 0): ?>
+<?php while ($user = mysqli_fetch_assoc($result)): ?>
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 <td class="w-4 p-4">
 <div class="flex items-center">
-<input id="checkbox-table-search-1" type="checkbox"
+<input id="checkbox-table-search-<?= $user['id_user']; ?>" type="checkbox"
 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-<label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+<label for="checkbox-table-search-<?= $user['id_user']; ?>" class="sr-only">checkbox</label>
 </div>
 </td>
-<th scope="row"
-class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-alt="Jese image">
+<th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+<img class="w-10 h-10 rounded-full" src="uploads/default.jpg" alt="User image">
 <div class="ps-3">
 <div class="text-base font-semibold">
-Neil Sims
+<?= htmlspecialchars($user['nama_lengkap']); ?>
 </div>
 <div class="font-normal text-gray-500">
-neil.sims@flowbite.com
+<?= htmlspecialchars($user['username']); ?>
 </div>
 </div>
 </th>
-<td class="px-6 py-4">
-Admin
-</td>
+<td class="px-6 py-4"><?= htmlspecialchars($user['role']); ?></td>
 <td class="px-6 py-4">
 <div class="flex items-center">
 <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
 Online
 </div>
 </td>
-<td class="px-6 py-4">
+<td class="px-6 py-4 text-center">
 <!-- Modal toggle -->
-<a href="#" type="button" data-modal-show="editUserModal"
-class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-2">Edit
-user</a>
-<a href="#" type="button"
-class="font-medium text-red-500 dark:text-red-500 hover:underline px-2">Delete
-user</a>
+<a href="#" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-2">Edit user</a>
+<a href="proses_delete_users.php?id_user=<?= $user['id_user']; ?>" type="button"
+onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?');"
+class="font-medium text-red-500 dark:text-red-500 hover:underline px-2">Delete user</a>
 </td>
 </tr>
-<tr
-class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-<td class="w-4 p-4">
-<div class="flex items-center">
-<input id="checkbox-table-search-2" type="checkbox"
-class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-<label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-</div>
-</td>
-<th scope="row"
-class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-3.jpg"
-alt="Jese image">
-<div class="ps-3">
-<div class="text-base font-semibold">
-Bonnie Green
-</div>
-<div class="font-normal text-gray-500">
-bonnie@flowbite.com
-</div>
-</div>
-</th>
-<td class="px-6 py-4">
-user
-</td>
-<td class="px-6 py-4">
-<div class="flex items-center">
-<div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
-Online
-</div>
-</td>
-<td class="px-6 py-4">
-<!-- Modal toggle -->
-<a href="#" type="button" data-modal-show="editUserModal"
-class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-2">Edit
-user</a>
-<a href="#" type="button"
-class="font-medium text-red-500 dark:text-red-500 hover:underline px-2">Delete
-user</a>
+<?php endwhile; ?>
+<?php else : ?>
+<tr>
+<td colspan="5" class="px-6 py-4 text-center">Tidak ada data user.</td>
 </tr>
-<tr
-class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-<td class="w-4 p-4">
-<div class="flex items-center">
-<input id="checkbox-table-search-2" type="checkbox"
-class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-<label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-</div>
-</td>
-<th scope="row"
-class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-2.jpg"
-alt="Jese image">
-<div class="ps-3">
-<div class="text-base font-semibold">
-Jese Leos
-</div>
-<div class="font-normal text-gray-500">
-jese@flowbite.com
-</div>
-</div>
-</th>
-<td class="px-6 py-4">
-user
-</td>
-<td class="px-6 py-4">
-<div class="flex items-center">
-<div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
-Online
-</div>
-</td>
-<td class="px-6 py-4">
-<!-- Modal toggle -->
-<a href="#" type="button" data-modal-show="editUserModal"
-class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-2">Edit
-user</a>
-<a href="#" type="button"
-class="font-medium text-red-500 dark:text-red-500 hover:underline px-2">Delete
-user</a>
-</td>
-</tr>
-<tr
-class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-<td class="w-4 p-4">
-<div class="flex items-center">
-<input id="checkbox-table-search-2" type="checkbox"
-class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-<label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-</div>
-</td>
-<th scope="row"
-class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-5.jpg"
-alt="Jese image">
-<div class="ps-3">
-<div class="text-base font-semibold">
-Thomas Lean
-</div>
-<div class="font-normal text-gray-500">
-thomes@flowbite.com
-</div>
-</div>
-</th>
-<td class="px-6 py-4">
-user
-</td>
-<td class="px-6 py-4">
-<div class="flex items-center">
-<div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
-Online
-</div>
-</td>
-<td class="px-6 py-4">
-<!-- Modal toggle -->
-<a href="#" type="button" data-modal-show="editUserModal"
-class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-2">Edit
-user</a>
-<a href="#" type="button"
-class="font-medium text-red-500 dark:text-red-500 hover:underline px-2">Delete
-user</a>
-</td>
-</tr>
-<tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-<td class="w-4 p-4">
-<div class="flex items-center">
-<input id="checkbox-table-search-3" type="checkbox"
-class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-<label for="checkbox-table-search-3" class="sr-only">checkbox</label>
-</div>
-</td>
-<th scope="row"
-class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-4.jpg"
-alt="Jese image">
-<div class="ps-3">
-<div class="text-base font-semibold">
-Leslie Livingston
-</div>
-<div class="font-normal text-gray-500">
-leslie@flowbite.com
-</div>
-</div>
-</th>
-<td class="px-6 py-4">
-user
-</td>
-<td class="px-6 py-4">
-<div class="flex items-center">
-<div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
-Offline
-</div>
-</td>
-<td class="px-6 py-4">
-<!-- Modal toggle -->
-<a href="#" type="button" data-modal-show="editUserModal" id="editUser"
-class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-2">Edit
-user</a>
-<a href="#" type="button"
-class="font-medium text-red-500 dark:text-red-500 hover:underline px-2">Delete
-user</a>
-</td>
-</tr>
+<?php endif; ?>
 </tbody>
 </table>
+
 <!-- Edit user modal -->
 <div id="editUserModal" tabindex="-1" aria-hidden="true"
 class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">

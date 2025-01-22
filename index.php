@@ -22,7 +22,7 @@ if (!isset($_SESSION['id_user'])) {
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 </head>
 
-<body class="bg-white dark:bg-gray-600">
+<body class="bg-slate-200 dark:bg-gray-600">
 
 <!-- start navbar -->
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -70,7 +70,7 @@ xamonxx@gmail.com
 </div>
 <ul class="py-1" role="none">
 <li>
-<a href="#"
+<a href="index.php"
 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
 role="menuitem">Dashboard</a>
 </li>
@@ -144,7 +144,7 @@ d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A
 </li>
 <li>
 <li>
-<a href="data_user.php"
+<a href="data_users.php"
 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -187,138 +187,15 @@ d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117
 
 
 <!-- pembukus content img Carousel  -->
-<div class="container lg:max-w-[80%] lg:ml-64 mt-[65px]">
-<!-- img Carousel start  -->
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
-<!-- Carousel wrapper -->
-<div class="relative shadow-lg h-56 overflow-hidden md:h-96">
-<!-- Item 1 -->
-<div class="hidden duration-700 ease-in-out" data-carousel-item>
-<img src="./img/carousel(1).jpg"
-class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-</div>
-<!-- Item 2 -->
-<div class="hidden duration-700 ease-in-out" data-carousel-item>
-<img src="./img/carousel(2).jpg"
-class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-</div>
-<!-- Item 3 -->
-<div class="hidden duration-700 ease-in-out" data-carousel-item>
-<img src="./img/carousel(3).jpg"
-class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-</div>
-<!-- Item 4 -->
-<div class="hidden duration-700 ease-in-out" data-carousel-item>
-<img src="./img/carousel(4).jpg"
-class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-</div>
-<!-- Item 5 -->
-<div class="hidden duration-700 ease-in-out" data-carousel-item>
-<img src="./img/carousel(2).jpg"
-class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-</div>
-</div>
-<!-- Slider indicators -->
-<div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-<button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-data-carousel-slide-to="0"></button>
-<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-data-carousel-slide-to="1"></button>
-<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-data-carousel-slide-to="2"></button>
-<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
-data-carousel-slide-to="3"></button>
-<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
-data-carousel-slide-to="4"></button>
-</div>
-<!-- Slider controls -->
-<button type="button"
-class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-data-carousel-prev>
-<span
-class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-<svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-d="M5 1 1 5l4 4" />
-</svg>
-<span class="sr-only">Previous</span>
-</span>
-</button>
-<button type="button"
-class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-data-carousel-next>
-<span
-class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-<svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-d="m1 9 4-4-4-4" />
-</svg>
-<span class="sr-only">Next</span>
-</span>
-</button>
-</div>
-</div>
 
 <!-- pembukus content -->
-<div class="container lg:max-w-[74%] lg:ml-72 px-4 mt-4">
-<div class="w-full mx-auto bg-gray-700 mx-4 ">
-<div class="grid grid-cols-4 gap-4">
-<img src="https://via.placeholder.com/40" alt="Pulsa & Data" class="mb-2">
-<span class="text-sm text-gray-700">Pulsa & Data</span>
-</div>
-
-<!-- A+ Rewards -->
-<div class="flex flex-col items-center">
-<img src="https://via.placeholder.com/40" alt="A+ Rewards" class="mb-2">
-<span class="text-sm text-gray-700">A+ Rewards</span>
-</div>
-
-<!-- Hemat s.d Rp60Rb -->
-<div class="flex flex-col items-center">
-<img src="https://via.placeholder.com/40" alt="Hemat s.d Rp60Rb" class="mb-2">
-<span class="text-sm text-gray-700">Hemat s.d Rp60Rb</span>
-</div>
-
-<!-- Halodoc -->
-<div class="flex flex-col items-center">
-<img src="https://via.placeholder.com/40" alt="Halodoc" class="mb-2">
-<span class="text-sm text-gray-700">Halodoc</span>
-</div>
-
-<!-- Tipu Online -->
-<div class="flex flex-col items-center">
-<img src="https://via.placeholder.com/40" alt="Tipu Online" class="mb-2">
-<span class="text-sm text-gray-700">Tipu Online</span>
-</div>
-
-<!-- Google Play Zone -->
-<div class="flex flex-col items-center">
-<img src="https://via.placeholder.com/40" alt="Google Play Zone" class="mb-2">
-<span class="text-sm text-gray-700">Google Play Zone</span>
-</div>
-
-<!-- Reksa Dana -->
-<div class="flex flex-col items-center">
-<img src="https://via.placeholder.com/40" alt="Reksa Dana" class="mb-2">
-<span class="text-sm text-gray-700">Reksa Dana</span>
-</div>
-
-<!-- Lihat Semua -->
-<div class="flex flex-col items-center">
-<img src="https://via.placeholder.com/40" alt="Lihat Semua" class="mb-2">
-<span class="text-sm text-gray-700">Lihat Semua</span>
-</div>
-
-</div>
-<h1 class="text-4xl text-white font-bold uppercase underline">Dashboard</h1>
+<div class="container lg:max-w-[74%] lg:ml-72 px-4 mt-20">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 my-4">
 <div class="p-4 bg-gray-800 text-white shadow rounded flex justify-between items-center">
 <div>
 <h3 class="text-2xl font-bold">720</h3>
 <p class="text-lg">
-Products
+Data Barang
 </p>
 </div>
 <i class="fas fa-gift text-4xl text-primary border rounded-full bg-gray-700 p-3"></i>
@@ -328,7 +205,7 @@ Products
 <div>
 <h3 class="text-2xl font-bold">4920</h3>
 <p class="text-lg">
-Sales
+Lelang Aktif
 </p>
 </div>
 <i class="fas fa-hand-holding-usd text-4xl text-primary border rounded-full bg-gray-700 p-3"></i>
@@ -338,7 +215,7 @@ Sales
 <div>
 <h3 class="text-2xl font-bold">3899</h3>
 <p class="text-lg">
-Delivery
+Data User
 </p>
 </div>
 <i class="fas fa-truck text-4xl text-primary border rounded-full bg-gray-700 p-3"></i>

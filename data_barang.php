@@ -18,7 +18,7 @@ if (!isset($_SESSION['id_user'])) {
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 </head>
 
-<body class="bg-slate-600">
+<body class="bg-slate-200 dark:bg-slate-600 ">
 <!-- star navbar -->
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
 <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -65,7 +65,7 @@ xamonxx@gmail.com
 </div>
 <ul class="py-1" role="none">
 <li>
-<a href="#"
+<a href="index.php"
 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
 role="menuitem">Dashboard</a>
 </li>
@@ -80,7 +80,7 @@ class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-30
 role="menuitem">Earnings</a>
 </li>
 <li>
-<a href="#"
+<a href="logout.php"
 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
 role="menuitem">Sign out</a>
 </li>
